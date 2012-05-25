@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Dynamic;
+using System.Linq;
 using System.Web.Mvc;
 using FriendsEditorDemo.Models;
 
@@ -9,6 +10,17 @@ namespace FriendsEditorDemo.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+
+        public JsonResult Get()
+        {
+            dynamic o = new ExpandoObject();
+            {
+                o.firstName = "joe";
+                o.lastName = "smith";
+            }
+            return Json(new { o });
         }
 
         public JsonResult Save(Person person)
